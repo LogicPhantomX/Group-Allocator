@@ -1,0 +1,1148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0b302b" />
+    <title>CSC Class 28 | Group Allocation</title>
+    <meta name="description" content="CSC Class 28 group allocation portal. Register, get approved and draw your group." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CSC Class 28 | Group Allocation" />
+    <meta property="og:description" content="Register, get approved and draw your group." />
+    <meta property="og:image" content="/assets/og-image.jpg" />
+    <meta name="twitter:card" content="summary" />
+    <style>
+      :root {
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: #eaf6f3;
+        background: #071b1a;
+        font-synthesis: none;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(
+          ellipse at 50% -20%,
+          #17665d 0,
+          #0b302b 40%,
+          #071b1a 78%
+        );
+      }
+      .wrap {
+        max-width: 1050px;
+        margin: auto;
+        padding: 24px 16px 50px;
+      }
+      .hero {
+        text-align: center;
+        padding: 16px 0 24px;
+      }
+      .hero-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        text-align: left;
+      }
+      .hero-copy {
+        min-width: 0;
+      }
+      .logo {
+        width: 100px;
+        height: 100px;
+        flex: 0 0 auto;
+        object-fit: cover;
+        border-radius: 22px;
+        border: 1px solid #62d5ce66;
+        box-shadow: 0 12px 35px #0007;
+      }
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #7bd9d0;
+        font-weight: 850;
+        margin: 0 0 6px;
+      }
+      h1 {
+        font-size: clamp(28px, 5vw, 46px);
+        letter-spacing: -0.045em;
+        margin: 0;
+      }
+      .hero p {
+        color: #b5d2cc;
+        margin: 13px auto 0;
+        max-width: 620px;
+        line-height: 1.5;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      .card {
+        background: #0d2926;
+        border: 1px solid #ffffff18;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 14px 38px #0002;
+      }
+      .section-title {
+        font-size: 18px;
+        margin: 0 0 5px;
+      }
+      .muted {
+        color: #a6c1bb;
+        font-size: 13px;
+      }
+      .remaining {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+      .remaining strong {
+        display: block;
+        font-size: 34px;
+        line-height: 1.1;
+        color: #82e4d8;
+        letter-spacing: -0.04em;
+      }
+      .remaining span {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        color: #a6c1bb;
+        font-weight: 750;
+      }
+      .progress {
+        height: 8px;
+        background: #193d38;
+        border-radius: 99px;
+        overflow: hidden;
+        margin-top: 15px;
+      }
+      .bar {
+        height: 100%;
+        background: linear-gradient(90deg, #20a58f, #83e4d8);
+        transition: width 0.3s;
+      }
+      .status {
+        font-size: 13px;
+        color: #a9c6bf;
+        min-height: 20px;
+        margin-top: 10px;
+        line-height: 1.5;
+      }
+      .field {
+        margin: 13px 0;
+      }
+      .field label {
+        display: block;
+        font-size: 13px;
+        font-weight: 750;
+        margin-bottom: 7px;
+        color: #d7ebe6;
+      }
+      .field input {
+        width: 100%;
+        padding: 13px 14px;
+        border-radius: 12px;
+        border: 1px solid #ffffff25;
+        background: #071f1d;
+        color: #f0fffb;
+        font: inherit;
+        outline: none;
+      }
+      .field input:focus {
+        border-color: #66d9ca;
+        box-shadow: 0 0 0 3px #66d9ca20;
+      }
+      .field input::placeholder {
+        color: #78958e;
+      }
+      button {
+        font: inherit;
+        font-weight: 800;
+        border: 0;
+        border-radius: 12px;
+        padding: 13px 16px;
+        cursor: pointer;
+        transition:
+          transform 0.15s,
+          opacity 0.15s;
+      }
+      button:active {
+        transform: scale(0.985);
+      }
+      button:disabled {
+        opacity: 0.48;
+        cursor: not-allowed;
+      }
+      .primary {
+        background: #65d7c7;
+        color: #082a25;
+        width: 100%;
+        min-height: 50px;
+      }
+      .secondary {
+        background: #173f39;
+        color: #d7f6ef;
+        border: 1px solid #ffffff1b;
+      }
+      .danger {
+        background: #5b2927;
+        color: #ffe2dd;
+        border: 1px solid #ff8b7a44;
+      }
+      .button-row {
+        display: flex;
+        gap: 9px;
+        flex-wrap: wrap;
+      }
+      .button-row button {
+        flex: 1;
+      }
+      .result {
+        display: none;
+        text-align: center;
+        background: #103c34;
+        border-color: #4ac9b355;
+      }
+      .result.show {
+        display: block;
+      }
+      .result .small {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        color: #a9d8cf;
+        font-weight: 850;
+      }
+      .result h2 {
+        font-size: clamp(25px, 7vw, 38px);
+        margin: 10px 0;
+        color: #dffff8;
+      }
+      .result .big {
+        font-size: 76px;
+        line-height: 1;
+        font-weight: 950;
+        color: #79e5d7;
+      }
+      .groups {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+        margin-top: 15px;
+      }
+      .group {
+        background: #09211f;
+        border: 1px solid #ffffff14;
+        border-radius: 14px;
+        padding: 12px;
+        min-width: 0;
+      }
+      .group-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
+        margin-bottom: 9px;
+      }
+      .letter {
+        font-size: 20px;
+        font-weight: 950;
+        color: #7ce0d4;
+      }
+      .count {
+        font-size: 11px;
+        color: #a5c1ba;
+      }
+      .slots {
+        display: grid;
+        gap: 5px;
+      }
+      .slot {
+        font-size: 12px;
+        padding: 7px 8px;
+        border-radius: 8px;
+        background: #17322e;
+        color: #829f97;
+        overflow-wrap: anywhere;
+      }
+      .slot.filled {
+        background: #164b40;
+        color: #c6fff0;
+        font-weight: 700;
+      }
+      .admin-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+      .hidden {
+        display: none !important;
+      }
+      .admin-list {
+        display: grid;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .student-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        background: #09211f;
+        border: 1px solid #ffffff13;
+        padding: 11px;
+        border-radius: 12px;
+      }
+      .student-info {
+        min-width: 0;
+      }
+      .student-info strong {
+        display: block;
+        overflow-wrap: anywhere;
+      }
+      .student-info small {
+        color: #a6c1bb;
+      }
+      .student-actions {
+        display: flex;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+      .student-actions button {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+      .pill {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #bcece3;
+        background: #1c5149;
+        border-radius: 99px;
+        padding: 5px 8px;
+      }
+      .footer {
+        text-align: center;
+        color: #72918a;
+        font-size: 11px;
+        padding: 18px 5px;
+      }
+      .drawing {
+        animation: draw 0.55s ease-in-out infinite;
+      }
+      @keyframes draw {
+        0% {
+          transform: translateY(0) rotate(0);
+        }
+        30% {
+          transform: translateY(-7px) rotate(-3deg);
+        }
+        65% {
+          transform: translateY(4px) rotate(3deg);
+        }
+        100% {
+          transform: translateY(0) rotate(0);
+        }
+      }
+      @media (min-width: 760px) {
+        .layout {
+          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        }
+        .groups {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .logo {
+          width: 128px;
+          height: 128px;
+        }
+      }
+      @media (max-width: 899px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .groups {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 900px) and (max-width: 1099px) {
+        .wrap {
+          padding: 20px 22px 40px;
+        }
+        .layout {
+          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+          gap: 14px;
+        }
+        .card {
+          padding: 18px;
+        }
+        .groups {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .logo {
+          width: 104px;
+          height: 104px;
+        }
+      }
+      @media (min-width: 1100px) {
+        .layout {
+          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        }
+        .groups {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 480px) {
+        .wrap {
+          padding: 14px 12px 36px;
+        }
+        .hero-row {
+          justify-content: flex-start;
+          gap: 12px;
+        }
+        .logo {
+          width: 64px;
+          height: 64px;
+          border-radius: 16px;
+        }
+        .eyebrow {
+          font-size: 9px;
+          letter-spacing: 0.12em;
+        }
+        h1 {
+          font-size: clamp(23px, 7vw, 30px);
+        }
+        .button-row {
+          display: grid;
+        }
+        .button-row button {
+          width: 100%;
+        }
+        .student-row {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .student-actions {
+          width: 100%;
+        }
+        .student-actions button {
+          flex: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="hero">
+        <div class="hero-row">
+          <img
+            class="logo"
+            src="assets/csc-class-28-logo.jpeg"
+            alt="Computer Science Class 28 logo"
+          />
+          <div class="hero-copy">
+            <div class="eyebrow">Computer Science · Class 28</div>
+            <h1>Find Your Group</h1>
+          </div>
+        </div>
+        <p>
+          Submit your details and wait for approval before drawing your group.
+        </p>
+      </header>
+      <div class="layout">
+        <main>
+          <section class="card">
+            <div class="remaining">
+              <div>
+                <span>AVAILABLE SLOTS</span
+                ><strong id="remaining">— / 21</strong>
+              </div>
+              <div style="text-align: right">
+                <span id="allocated">Connecting…</span>
+              </div>
+            </div>
+            <div class="progress">
+              <div class="bar" id="progress" style="width: 0%"></div>
+            </div>
+            <div class="status" id="connection">
+              Connecting to the allocation system…
+            </div>
+          </section>
+          <section class="card" id="studentCard">
+            <h2 class="section-title">Student registration</h2>
+            <p class="muted">
+              Enter your details. Your registration must be approved by the
+              class administrator before you can draw.
+            </p>
+            <div class="field">
+              <label for="fullName">Full name</label
+              ><input
+                id="fullName"
+                maxlength="120"
+                autocomplete="name"
+                placeholder="Enter your full name"
+              />
+            </div>
+            <div class="field">
+              <label for="matricNumber">Matriculation number</label
+              ><input
+                id="matricNumber"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                autocomplete="off"
+                placeholder="e.g. 2000000000"
+              />
+            </div>
+            <div class="field">
+              <label for="accessPin">Private access password</label
+              ><input
+                id="accessPin"
+                type="password"
+                minlength="8"
+                autocomplete="new-password"
+                placeholder="Create at least 8 characters"
+              />
+            </div>
+            <div class="button-row">
+              <button class="secondary" id="registerBtn">
+                Submit registration</button
+              ><button class="primary" id="rollBtn">
+                Check approval / Draw
+              </button>
+            </div>
+            <div class="status" id="studentMessage">
+              Register first, then wait for the administrator to verify your
+              details.
+            </div>
+          </section>
+          <section class="card result" id="resultCard">
+            <div class="small">YOUR ALLOCATION</div>
+            <h2>You have been assigned</h2>
+            <div class="big" id="resultLetter">—</div>
+            <p id="resultName" class="muted"></p>
+          </section>
+        </main>
+        <aside>
+          <section class="card">
+            <h2 class="section-title">Live groups board</h2>
+            <p class="muted">
+              The board refreshes automatically as allocations are made.
+            </p>
+            <div class="groups" id="groups"></div>
+          </section>
+          <section class="card" style="margin-top: 15px">
+            <div class="admin-head">
+              <div>
+                <h2 class="section-title">Administrator</h2>
+                <p class="muted" style="margin: 3px 0 0">
+                  Restricted class management
+                </p>
+              </div>
+              <span class="pill">Admin only</span>
+            </div>
+            <div id="adminLogin">
+              <div class="field">
+                <label for="adminEmail">Administrator email</label
+                ><input
+                  id="adminEmail"
+                  type="email"
+                  autocomplete="username"
+                  placeholder="Your admin email"
+                />
+              </div>
+              <div class="field">
+                <label for="adminPassword">Password</label
+                ><input
+                  id="adminPassword"
+                  type="password"
+                  autocomplete="current-password"
+                  placeholder="Your admin password"
+                />
+              </div>
+              <button class="secondary" id="adminLoginBtn" style="width: 100%">
+                Sign in
+              </button>
+            </div>
+            <div id="adminPanel" class="hidden">
+              <div class="admin-head">
+                <strong>Registration requests</strong
+                ><button class="secondary" id="adminLogoutBtn">Sign out</button>
+              </div>
+              <div class="status" id="adminMessage">Loading registrations…</div>
+              <div class="button-row" style="margin: 12px 0">
+                <button class="secondary" id="excelExportBtn">
+                  Download Excel report
+                </button>
+                <button class="secondary" id="wordExportBtn">
+                  Download Word report
+                </button>
+              </div>
+              <div class="admin-list" id="adminList"></div>
+              <div
+                style="
+                  border-top: 1px solid #ffffff1a;
+                  margin-top: 16px;
+                  padding-top: 14px;
+                "
+              >
+                <p class="muted">
+                  A new round clears previous assignments and slots. Student
+                  registrations are kept.
+                </p>
+                <button class="danger" id="resetBtn" style="width: 100%">
+                  Start new allocation round
+                </button>
+              </div>
+            </div>
+          </section>
+        </aside>
+      </div>
+      <footer class="footer">CSC Class 28 · Group allocation portal</footer>
+    </div>
+    <script type="module">
+      import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+      const SUPABASE_URL = "https://oogfonznjgmgkvhzjfzk.supabase.co";
+      const SUPABASE_PUBLISHABLE_KEY =
+        "sb_publishable_bZX0Md9nHuweW14ehz6L1w_uA0h5MQW";
+      const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+      const GROUPS = ["A", "B", "C", "D", "E", "F", "G"];
+      const $ = (id) => document.getElementById(id);
+      let adminSession = null;
+      let refreshTimer = null;
+
+      function cleanMatric(value) {
+        return value.trim().replace(/\s+/g, "").toUpperCase();
+      }
+      function showStudentMessage(message) {
+        $("studentMessage").textContent = message;
+      }
+      function safeError(error) {
+        return error?.message || "Something went wrong. Please try again.";
+      }
+
+      async function refreshBoard() {
+        const { data, error } = await supabase.rpc("get_public_board");
+        if (error) {
+          $("connection").textContent =
+            "Database connection issue: " + safeError(error);
+          return;
+        }
+        const state = data || {};
+        const rows = Array.isArray(state.assignments) ? state.assignments : [];
+        const remaining = Number(state.remaining_count ?? 21);
+        $("remaining").textContent = `${remaining} / 21`;
+        $("allocated").textContent = `${21 - remaining} allocated`;
+        $("progress").style.width =
+          `${Math.max(0, Math.min(100, ((21 - remaining) / 21) * 100))}%`;
+        $("connection").textContent =
+          `Connected · Round ${state.round_no ?? 1} · live board`;
+        const board = $("groups");
+        board.innerHTML = "";
+        for (const letter of GROUPS) {
+          const people = rows.filter((row) => row.group_letter === letter);
+          const card = document.createElement("div");
+          card.className = "group";
+          const top = document.createElement("div");
+          top.className = "group-top";
+          const title = document.createElement("span");
+          title.className = "letter";
+          title.textContent = `GROUP ${letter}`;
+          const count = document.createElement("span");
+          count.className = "count";
+          count.textContent = `${people.length}/3`;
+          top.append(title, count);
+          card.append(top);
+          const slots = document.createElement("div");
+          slots.className = "slots";
+          for (let i = 0; i < 3; i++) {
+            const slot = document.createElement("div");
+            slot.className = "slot" + (people[i] ? " filled" : "");
+            slot.textContent = people[i]
+              ? people[i].student_name
+              : `Available slot ${i + 1}`;
+            slots.append(slot);
+          }
+          card.append(slots);
+          board.append(card);
+        }
+      }
+
+      function studentInput() {
+        const fullName = $("fullName").value.trim().replace(/\s+/g, " ");
+        const matric = cleanMatric($("matricNumber").value);
+        const pin = $("accessPin").value;
+        if (fullName.length < 2) throw new Error("Enter your full name.");
+        if (!/^[0-9]{10}$/.test(matric))
+          throw new Error(
+            "Matriculation number must contain exactly 10 digits.",
+          );
+        if (pin.length < 8)
+          throw new Error(
+            "Your private access password must contain at least 8 characters.",
+          );
+        return { fullName, matric, pin };
+      }
+
+      $("registerBtn").addEventListener("click", async () => {
+        let details;
+        try {
+          details = studentInput();
+        } catch (e) {
+          showStudentMessage(e.message);
+          return;
+        }
+        $("registerBtn").disabled = true;
+        showStudentMessage("Submitting your registration…");
+        const { data, error } = await supabase.rpc("register_student", {
+          p_full_name: details.fullName,
+          p_matric_number: details.matric,
+          p_access_password: details.pin,
+        });
+        $("registerBtn").disabled = false;
+        if (error) {
+          showStudentMessage(safeError(error));
+          return;
+        }
+        if (!data?.success) {
+          showStudentMessage(
+            data?.message || "Registration could not be submitted.",
+          );
+          return;
+        }
+        showStudentMessage(
+          data.message ||
+            "Registration submitted. Await administrator approval.",
+        );
+      });
+
+      $("rollBtn").addEventListener("click", async () => {
+        let details;
+        try {
+          details = studentInput();
+        } catch (e) {
+          showStudentMessage(e.message);
+          return;
+        }
+        $("rollBtn").disabled = true;
+        $("rollBtn").classList.add("drawing");
+        $("rollBtn").textContent = "CHECKING…";
+        showStudentMessage("Checking your approval and allocation…");
+        const { data, error } = await supabase.rpc("roll_group_by_matric", {
+          p_matric_number: details.matric,
+          p_access_password: details.pin,
+        });
+        $("rollBtn").disabled = false;
+        $("rollBtn").classList.remove("drawing");
+        $("rollBtn").textContent = "Check approval / Draw";
+        if (error) {
+          showStudentMessage(safeError(error));
+          return;
+        }
+        if (!data?.success) {
+          showStudentMessage(
+            data?.message || "Allocation could not be completed.",
+          );
+          return;
+        }
+        $("resultLetter").textContent = data.group_letter;
+        $("resultName").textContent =
+          `${data.student_name} · ${data.slot_code} · saved for this round`;
+        $("resultCard").classList.add("show");
+        showStudentMessage(
+          "Your allocation is saved. You can return with your matriculation number and private access password to view it again.",
+        );
+        await refreshBoard();
+      });
+
+      async function loadAdminRegistrations() {
+        $("adminMessage").textContent = "Loading registrations…";
+        const { data, error } = await supabase.rpc("admin_list_registrations");
+        if (error) {
+          $("adminMessage").textContent = safeError(error);
+          return;
+        }
+        const list = $("adminList");
+        list.innerHTML = "";
+        if (!data?.length) {
+          $("adminMessage").textContent = "No registrations yet.";
+          return;
+        }
+        const pending = data.filter((item) => item.status === "pending").length;
+        $("adminMessage").textContent =
+          `${data.length} registration(s) · ${pending} awaiting review`;
+        for (const student of data) {
+          const row = document.createElement("div");
+          row.className = "student-row";
+          const info = document.createElement("div");
+          info.className = "student-info";
+          const name = document.createElement("strong");
+          name.textContent = student.full_name;
+          const matric = document.createElement("small");
+          matric.textContent = `${student.matric_number} · ${student.status}`;
+          info.append(name, matric);
+          row.append(info);
+          if (student.status === "pending") {
+            const actions = document.createElement("div");
+            actions.className = "student-actions";
+            const approve = document.createElement("button");
+            approve.className = "secondary";
+            approve.textContent = "Approve";
+            approve.addEventListener("click", () =>
+              reviewStudent(student.id, "approved"),
+            );
+            const reject = document.createElement("button");
+            reject.className = "danger";
+            reject.textContent = "Reject";
+            reject.addEventListener("click", () =>
+              reviewStudent(student.id, "rejected"),
+            );
+            actions.append(approve, reject);
+            row.append(actions);
+          }
+          list.append(row);
+        }
+      }
+
+      async function reviewStudent(id, decision) {
+        const confirmation =
+          decision === "approved"
+            ? "Approve this student? Make sure you have verified their identity against your class records."
+            : "Reject this registration?";
+        if (!confirm(confirmation)) return;
+        const { data, error } = await supabase.rpc(
+          "admin_review_registration",
+          { p_registration_id: id, p_decision: decision, p_reason: null },
+        );
+        if (error) {
+          $("adminMessage").textContent = safeError(error);
+          return;
+        }
+        $("adminMessage").textContent = data?.message || "Review saved.";
+        await loadAdminRegistrations();
+      }
+
+      async function fetchAllocationReportData() {
+        const { data, error } = await supabase.rpc("admin_export_allocations");
+        if (error)
+          throw new Error(error.message || "Could not fetch allocation data.");
+        if (!data || !Array.isArray(data.assignments))
+          throw new Error("The server returned an invalid report.");
+        return data;
+      }
+
+      function groupReportRows(assignments) {
+        return Object.fromEntries(
+          GROUPS.map((letter) => [
+            letter,
+            assignments
+              .filter(
+                (a) => String(a.group_letter || "").toUpperCase() === letter,
+              )
+              .sort((a, b) =>
+                String(a.slot_code || "").localeCompare(
+                  String(b.slot_code || ""),
+                ),
+              ),
+          ]),
+        );
+      }
+
+      function reportTimestamp(value) {
+        if (!value) return "";
+        const d = new Date(value);
+        return Number.isNaN(d.getTime()) ? String(value) : d.toLocaleString();
+      }
+
+      async function downloadExcelReport() {
+        const btn = $("excelExportBtn");
+        btn.disabled = true;
+        $("adminMessage").textContent = "Preparing grouped Excel report…";
+        try {
+          const data = await fetchAllocationReportData();
+          if (data.assignments.length === 0) {
+            $("adminMessage").textContent =
+              "There are no allocations to export yet.";
+            return;
+          }
+          const XLSX = await import(
+            "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/+esm"
+          );
+          const grouped = groupReportRows(data.assignments);
+          const wb = XLSX.utils.book_new();
+          const summaryRows = [
+            ["CSC CLASS 28 — GROUP ALLOCATION REPORT"],
+            ["Allocation restart report", "Round " + (data.round_no ?? 1)],
+            ["Total allocated", data.assignments.length],
+            ["Generated", new Date().toLocaleString()],
+            [],
+            ["Group", "Assigned students", "Capacity", "Slots remaining"],
+          ];
+          for (const g of GROUPS)
+            summaryRows.push([
+              "Group " + g,
+              grouped[g].length,
+              3,
+              3 - grouped[g].length,
+            ]);
+          const summary = XLSX.utils.aoa_to_sheet(summaryRows);
+          summary["!cols"] = [
+            { wch: 28 },
+            { wch: 22 },
+            { wch: 14 },
+            { wch: 18 },
+          ];
+          XLSX.utils.book_append_sheet(wb, summary, "Summary");
+          const allRows = [
+            [
+              "Group",
+              "Slot",
+              "Student full name",
+              "Matriculation number",
+              "Allocated at",
+            ],
+          ];
+          for (const g of GROUPS)
+            for (const a of grouped[g])
+              allRows.push([
+                "Group " + g,
+                a.slot_code || "",
+                a.student_name || "",
+                a.matric_number || "",
+                reportTimestamp(a.allocated_at),
+              ]);
+          const allSheet = XLSX.utils.aoa_to_sheet(allRows);
+          allSheet["!cols"] = [
+            { wch: 14 },
+            { wch: 12 },
+            { wch: 30 },
+            { wch: 22 },
+            { wch: 26 },
+          ];
+          XLSX.utils.book_append_sheet(wb, allSheet, "All Allocations");
+          for (const g of GROUPS) {
+            const rows = [
+              ["GROUP " + g + " — ALLOCATION LIST"],
+              [
+                "Slot",
+                "Student full name",
+                "Matriculation number",
+                "Allocated at",
+              ],
+            ];
+            for (const a of grouped[g])
+              rows.push([
+                a.slot_code || "",
+                a.student_name || "",
+                a.matric_number || "",
+                reportTimestamp(a.allocated_at),
+              ]);
+            const sh = XLSX.utils.aoa_to_sheet(rows);
+            sh["!cols"] = [{ wch: 12 }, { wch: 30 }, { wch: 22 }, { wch: 26 }];
+            XLSX.utils.book_append_sheet(wb, sh, "Group " + g);
+          }
+          XLSX.writeFile(
+            wb,
+            `CSC_Class28_Grouped_Allocations_Round_${data.round_no ?? 1}.xlsx`,
+          );
+          $("adminMessage").textContent =
+            `Excel report downloaded: ${data.assignments.length} student allocation(s), grouped A–G.`;
+        } catch (e) {
+          $("adminMessage").textContent =
+            "Excel export failed: " + safeError(e);
+        } finally {
+          btn.disabled = false;
+        }
+      }
+
+      async function downloadWordReport() {
+        const btn = $("wordExportBtn");
+        btn.disabled = true;
+        $("adminMessage").textContent = "Preparing formatted Word report…";
+        try {
+          const data = await fetchAllocationReportData();
+          if (data.assignments.length === 0) {
+            $("adminMessage").textContent =
+              "There are no allocations to export yet.";
+            return;
+          }
+          const { Document, Paragraph, TextRun, HeadingLevel, Packer } =
+            await import("https://cdn.jsdelivr.net/npm/docx@8.5.0/+esm");
+          const grouped = groupReportRows(data.assignments);
+          const children = [
+            new Paragraph({
+              heading: HeadingLevel.TITLE,
+              children: [new TextRun({ text: "CSC CLASS 28", bold: true })],
+            }),
+            new Paragraph({
+              heading: HeadingLevel.HEADING_1,
+              children: [new TextRun("GROUP ALLOCATION REPORT")],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun(
+                  `Round ${data.round_no ?? 1}  |  ${data.assignments.length} students allocated`,
+                ),
+              ],
+            }),
+            new Paragraph({
+              children: [
+                new TextRun(`Generated: ${new Date().toLocaleString()}`),
+              ],
+            }),
+            new Paragraph({ text: " " }),
+          ];
+          for (const g of GROUPS) {
+            children.push(
+              new Paragraph({
+                heading: HeadingLevel.HEADING_1,
+                children: [new TextRun(`GROUP ${g} (${grouped[g].length}/3)`)],
+              }),
+            );
+            if (grouped[g].length === 0) {
+              children.push(
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "No students allocated yet.",
+                      italics: true,
+                    }),
+                  ],
+                }),
+              );
+            } else {
+              for (const a of grouped[g]) {
+                children.push(
+                  new Paragraph({
+                    bullet: { level: 0 },
+                    children: [
+                      new TextRun({
+                        text: `${a.student_name || "Unnamed"}  |  ${a.matric_number || "Matric not recorded"}  |  Slot ${a.slot_code || "—"}`,
+                      }),
+                    ],
+                  }),
+                );
+              }
+            }
+            children.push(new Paragraph({ text: " " }));
+          }
+          const doc = new Document({ sections: [{ children }] });
+          const blob = await Packer.toBlob(doc);
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `CSC_Class28_Grouped_Allocations_Round_${data.round_no ?? 1}.docx`;
+          document.body.append(link);
+          link.click();
+          link.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 1500);
+          $("adminMessage").textContent =
+            `Word report downloaded: ${data.assignments.length} student allocation(s), grouped A–G.`;
+        } catch (e) {
+          $("adminMessage").textContent = "Word export failed: " + safeError(e);
+        } finally {
+          btn.disabled = false;
+        }
+      }
+
+      $("excelExportBtn").addEventListener("click", downloadExcelReport);
+      $("wordExportBtn").addEventListener("click", downloadWordReport);
+
+      $("adminLoginBtn").addEventListener("click", async () => {
+        const email = $("adminEmail").value.trim(),
+          password = $("adminPassword").value;
+        if (!email || !password) {
+          $("adminMessage").textContent =
+            "Enter your administrator email and password.";
+          return;
+        }
+        $("adminLoginBtn").disabled = true;
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        $("adminLoginBtn").disabled = false;
+        if (error) {
+          $("adminMessage").textContent = safeError(error);
+          return;
+        }
+        adminSession = data.session;
+        $("adminLogin").classList.add("hidden");
+        $("adminPanel").classList.remove("hidden");
+        await loadAdminRegistrations();
+      });
+
+      $("adminLogoutBtn").addEventListener("click", async () => {
+        await supabase.auth.signOut();
+        adminSession = null;
+        $("adminPanel").classList.add("hidden");
+        $("adminLogin").classList.remove("hidden");
+        $("adminPassword").value = "";
+        $("adminList").innerHTML = "";
+      });
+
+      $("resetBtn").addEventListener("click", async () => {
+        if (
+          !confirm(
+            "Start a new allocation round? This permanently clears all previous assignments and slots, but keeps student registrations.",
+          )
+        )
+          return;
+        $("resetBtn").disabled = true;
+        $("adminMessage").textContent =
+          "Clearing old allocations and preparing 21 new slots…";
+        const { data, error } = await supabase.rpc("admin_reset_allocation");
+        $("resetBtn").disabled = false;
+        if (error) {
+          $("adminMessage").textContent = "Reset failed: " + safeError(error);
+          return;
+        }
+        $("adminMessage").textContent =
+          data?.message ||
+          "New allocation round started. All 21 slots are available.";
+        $("resultCard").classList.remove("show");
+        await refreshBoard();
+      });
+
+      supabase
+        .channel("allocation-live-board")
+        .on(
+          "postgres_changes",
+          { event: "*", schema: "public", table: "group_slots" },
+          () => refreshBoard(),
+        )
+        .subscribe();
+      supabase.auth.getSession().then(({ data }) => {
+        if (data.session) {
+          adminSession = data.session;
+          $("adminLogin").classList.add("hidden");
+          $("adminPanel").classList.remove("hidden");
+          loadAdminRegistrations();
+        }
+      });
+      refreshBoard();
+      refreshTimer = setInterval(refreshBoard, 5000);
+    </script>
+  </body>
+</html>

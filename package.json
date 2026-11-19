@@ -1,0 +1,10 @@
+{
+  "name": "csc-class-28-group-allocation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CSC Class 28 group allocation portal (static site + Supabase)",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  }
+}
